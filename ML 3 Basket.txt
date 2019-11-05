@@ -1,0 +1,35 @@
+# http://www.salemmarafi.com/code/market-basket-analysis-with-r/
+# install.packages("arules")
+# install.packages("arulesViz")
+library(arules)
+library(arulesViz)
+library(datasets)
+
+# Load the data set
+data(Groceries)
+
+Groceries
+# To create an item frequency bar plot for inspecting the item frequency distribution for objects based on '>itemMatrix
+itemFrequencyPlot(Groceries,topN=20,type="absolute")
+
+
+# Mine frequent itemsets, association rules or association hyperedges using the Apriori algorithm. 
+rules <- apriori(Groceries, parameter = list(supp = 0.001, conf = 0.8))
+
+
+# The goal of inspect is to summarize all relevant options, plots and statistics that should be usually considered.
+inspect(rules[1:5])
+
+
+summary(rules)
+
+rules <- apriori(Groceries, parameter = list(supp = 0.001, conf = 0.8,maxlen=3))
+
+rules<-apriori(data=Groceries, parameter=list(supp=0.001,conf = 0.15,minlen=2),appearance = list(default="rhs",lhs="whole milk"),control = list(verbose=F))
+
+rules<-sort(rules, decreasing=TRUE,by="confidence")
+inspect(rules[1:5])
+
+
+plot(rules,method="graph",engine = 'interactive',shading=NA)
+  

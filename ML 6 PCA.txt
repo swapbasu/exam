@@ -1,0 +1,23 @@
+mtcars
+
+x= mtcars
+x
+summary(x)
+
+#to compute a correlation matrix. 
+cor(x)                                    
+#performs a principal components analysis on the given numeric data matrix and returns the results as an object of class princomp.
+pcal<-princomp(x,scores = TRUE)  
+summary(pcal)
+#Extract or print loadings in factor analysis (or principal components analysis).
+loadings(pcal)                            
+plot(pcal)
+#plots the variances against the number of the principal component.
+screeplot(pcal,type = "line",main="screen plot") 
+#to represent both the observations and variables of a matrix of multivariate data on the same plot
+biplot(pcal)                          
+install.packages("ggplot2")
+
+       
+
+
